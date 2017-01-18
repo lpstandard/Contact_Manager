@@ -34,5 +34,21 @@ export default {
           message: message
         });
       });
+  },  
+  deleteContact: (id) => {
+    ContactsAPI
+      .deleteContact('https://jsonplaceholder.typicode.com/users/'+id)
+      .then(contact => {
+          AppDispatcher.dispatch({
+          actionType: AppConstants.DELETE_CONTACT,
+          id: id
+        });
+      })
+      .catch(message => {
+        AppDispatcher.dispatch({
+          actionType: AppConstants.DELETE_CONTACT_ERROR,
+          message: message
+        });
+      });
   }
 };
